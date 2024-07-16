@@ -3,14 +3,12 @@
 # dependencies
 /node_modules
 /.pnp
-package-lock.json
 .pnp.js
 
 # testing
 /coverage
 
 # production
-/package-lock.json
 /build
 
 # misc
