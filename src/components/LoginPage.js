@@ -50,8 +50,10 @@ const LoginPage = ({ login, isAuthenticated, error }) => {
   const handleSubmit = async (values, { setSubmitting }) => {
     const { username, password } = values;
     const { success } = await login(username, password); 
+    console.log(success)
     if (success) {
       navigate('/dashboard'); 
+      window.location.href('./dashboard')
     }
     setSubmitting(false); 
   };
