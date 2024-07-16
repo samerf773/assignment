@@ -1,0 +1,13 @@
+{
+    "messages": [
+      { "date": "2024-07-01", "sent": 150, "received": 120, "failed": 10 },
+      { "date": "2024-07-02", "sent": 180, "received": 130, "failed": 5 },
+      { "date": "2024-07-03", "sent": 160, "received": 110, "failed": 8 }
+    ],
+    "calls": [
+      { "date": "2024-07-01", "sent": 50, "received": 40 },
+      { "date": "2024-07-02", "sent": 55, "received": 45 },
+      { "date": "2024-07-03", "sent": 60, "received": 50 }
+    ]
+  }
+  

@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux'; // Assuming you use Redux for state management
+import Home from './components/Home';
+import LoginPage from './components/LoginPage';
+import NotFound from './components/NotFound';
+import Dashboard from './components/Dashboard';
+import UserManagementPage from './components/UserManagement/UserManagementPage';
+import Layout from './components/Layout';
+import FormPage from './components/DynamicForm/FormPage';
+import { isAuthenticated } from './utils/auth';
 
-function App() {
+const App = () => {
+  // const isAuthenticatedUser = useSelector(state => state.auth.isAuthenticated); // Get authentication status from Redux or wherever you store it
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+        <Route path="/" element={<Navigate to="/dashboard" />} /> {/* Redirect root to dashboard if authenticated */}
+
+          <Route path="/login" element={<LoginPage />} />
+          <Route
+            path="/dashboard"
+            element={isAuthenticated() ? <Layout><Dashboard /></Layout> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/user-management"
+            element={isAuthenticated() ? <Layout><UserManagementPage /></Layout> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/dynamic-form"
+            element={isAuthenticated() ? <Layout><FormPage /></Layout> : <Navigate to="/login" />}
+          />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
